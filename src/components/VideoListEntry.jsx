@@ -9,6 +9,9 @@ var VideoListEntry = (props) => {
 
   var handleClick = function (event) {
     currentVidState = props.video[0];
+    
+    props.video[1].currentVid = currentVidState;
+
     // App.prototype.setState(currentVidState);
     // console.log(currentVidState);
 

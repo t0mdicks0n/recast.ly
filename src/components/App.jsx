@@ -6,18 +6,23 @@ class App extends React.Component {
       videos: window.exampleVideoData,
       currentVid: window.exampleVideoData[2]
     };
-  
-
-  // var handleClick = function (event) {
-  //   console.log('hello');
-  //   // console.log(event.target);
-  //   // console.log(super.render())
-
-  //   // props.clickOnListEntry();
-  // };
-    
+    this.handleClick = this.handleClick.bind(this); 
   }
 
+  
+
+  handleClick (event) {
+    this.setState(this.state.currentVid);
+    // console.log(this.state.currentVid)
+  }
+
+  // // handleClick(event) {
+  // //   console.log(props);
+  // // };
+
+  // var handleClick = function (event) {
+  //   console.log('props');
+  // };
 
   render () {
     return (
@@ -26,8 +31,8 @@ class App extends React.Component {
         <div className="col-md-7">
           <VideoPlayer video = {this.state.currentVid}/>
         </div>
-        <div className="col-md-5">
-          <VideoList videos = {[this.state.videos, this.state]}/>
+        <div onClick={this.handleClick} className="col-md-5">
+          <VideoList videos = {[this.state.videos, this.state]} state = {this.state}/>
         </div>
       </div>
     );
