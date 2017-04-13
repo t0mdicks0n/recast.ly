@@ -4,8 +4,12 @@ var VideoListEntry = (props) => {
   //   console.log('got clicked')
   // }
 
-  var handleClick = function (e) {
-    console.log('The link was clicked.');
+  var handleClick = function (event) {
+    // console.log(props);
+    // console.log(event.target);
+    // console.log(super.render())
+
+    // props.clickOnListEntry();
   };
 
   return (

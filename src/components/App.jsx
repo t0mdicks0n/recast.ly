@@ -21,6 +21,7 @@ class App extends React.Component {
       </div>
     );
   }
+  
 }
 
 // var App = () => (

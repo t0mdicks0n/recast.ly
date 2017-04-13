@@ -1,4 +1,9 @@
 var VideoList = (props) => {
+
+  var clickOnListEntry = function() {
+    console.log('im in the VideoList!');
+  };
+
   return (
   <div className="video-list media">
     {props.videos.map(video =>
