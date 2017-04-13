@@ -1,13 +1,17 @@
 var VideoList = (props) => {
 
-  var clickOnListEntry = function() {
-    console.log('im in the VideoList!');
+  var handleClick = function(event) {
+    console.log(props);
   };
 
+
+
+
+
   return (
-  <div className="video-list media">
-    {props.videos.map(video =>
-      <VideoListEntry video = {video}/>
+  <div onClick={handleClick} className="video-list media">
+    {props.videos[0].map(video =>
+      <VideoListEntry video = {[video, props.videos[1]]}/>
     )}
   </div>
   );
