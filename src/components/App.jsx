@@ -6,7 +6,9 @@ class App extends React.Component {
       videos: [],
       currentVid: exampleVideoData[0]
     };
-    this.handleClick = this.handleClick.bind(this); 
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
@@ -18,7 +20,7 @@ class App extends React.Component {
     });
 
     var yalla = this;
-    
+
     var set = function () {
       yalla.setState({
         videos: vids,
@@ -27,16 +29,50 @@ class App extends React.Component {
     };
 
     setTimeout(set, 1000);
-  } 
+  }
 
   handleClick (event) {
     this.setState(this.state.currentVid);
   }
 
+  handleChange (event) {
+    // console.log(event.target.value)
+
+
+    // var vids;
+
+    var tested;
+
+    var input = event.target.value;
+
+    var tester = function () {
+      this.props.search({key: window.YOUTUBE_API_KEY, max: this.props.max, query: input}, function(item) {
+        tested = item;
+      });
+    };
+
+    tester();
+
+    console.log(props.state.input);
+
+    // var yalla = this;
+
+    // var set = function () {
+    //   yalla.setState({
+    //     videos: vids,
+    //     currentVid: vids[0]
+    //   });
+    // };
+
+    // setTimeout(set, 500);
+
+
+  }
+
   render () {
     return (
       <div>
-        <Nav />
+        <Nav onChange={this.handleChange} state = {this.props}/>
         <div className="col-md-7">
           <VideoPlayer video = {this.state.currentVid}/>
         </div>
