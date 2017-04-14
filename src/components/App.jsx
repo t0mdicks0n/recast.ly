@@ -1,15 +1,33 @@
 class App extends React.Component {
   
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
-      videos: window.exampleVideoData,
-      currentVid: window.exampleVideoData[2]
+      videos: [],
+      currentVid: exampleVideoData[0]
     };
     this.handleClick = this.handleClick.bind(this); 
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  
+  componentDidMount() {
+    var vids;
+    
+    this.props.search({key: window.YOUTUBE_API_KEY, max: this.props.max, query: this.props.query}, function(item) {
+      vids = item;
+    });
+
+    var yalla = this;
+    
+    var set = function () {
+      yalla.setState({
+        videos: vids,
+        currentVid: vids[0]
+      });
+    };
+
+    setTimeout(set, 1000);
+  } 
 
   handleClick (event) {
     this.setState(this.state.currentVid);

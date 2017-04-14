@@ -1,51 +1,36 @@
 var searchYouTube = (options, callback) => {
-	var appServer = 'https://www.googleapis.com/youtube/v3/search'
+  var appServer = 'https://www.googleapis.com/youtube/v3/search';
 
-	// $.ajax({
-	// 		type: 'GET',
-	//     url: appServer,
-	//     dataType: 'json',
-	//     data: {maxResults: 5},
-	//     success: function (data) {
-	//     	console.log(data);
-	//     },
-	//     error: function (data) {
-	//       console.error('youtube: Failed to send message', data);
-	//     }
-	//   });
+  // $.ajax({
+  //    type: 'GET',
+  //     url: appServer,
+  //     dataType: 'json',
+  //     data: {maxResults: 5},
+  //     success: function (data) {
+  //      console.log(data);
+  //     },
+  //     error: function (data) {
+  //       console.error('youtube: Failed to send message', data);
+  //     }
+  //   });
 
-	var params = {
-		part: 'snippet',
-		key: options.key,
-		max: options.max,
-		q: options.query,
-		type: 'video',
-		videoEmbeddable: true,
-	};
+  var params = {
+    part: 'snippet',
+    type: 'video',
+    videoEmbeddable: true,
+    key: options.key,
+    maxResults: options.max,
+    q: options.query,
+  };
 
-	$.getJSON(appServer, params, function (data) {
-		data.items.forEach(function(element, index, array) {
-			callback(element);
-		});
-	});
+  $.getJSON(appServer, params, function (data) {
+    callback(data.items);
+  });
 };
 
-searchYouTube({key:'AIzaSyDQpUvp8t-cGuBAvNUrRVYlkVYZfCS5KT0', max:5, query:'Tom'}, function(item) {
-	console.log(item);
-});
-
-// function getRequest(searchTerm) {
-//     var params = {
-//         part: 'snippet',
-//         key: 'AIzaSyDQpUvp8t-cGuBAvNUrRVYlkVYZfCS5KT0',
-//         max:
-//         q: searchTerm
-//     };
-  
-//     $.getJSON('https://www.googleapis.com/youtube/v3/search', params, function (searchTerm) {
-//         console.log(searchTerm);
-//     });
-// }
+// searchYouTube({key:'AIzaSyDQpUvp8t-cGuBAvNUrRVYlkVYZfCS5KT0', max:1, query:'Tom'}, function(item) {
+//   console.log(item);
+// });
 
 window.searchYouTube = searchYouTube;
 
